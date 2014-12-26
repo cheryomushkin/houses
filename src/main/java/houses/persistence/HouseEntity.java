@@ -1,6 +1,7 @@
 package houses.persistence;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "house")
@@ -13,6 +14,9 @@ public class HouseEntity {
 
     @Column(unique = true, nullable = false)
     private String name;
+
+    @OneToMany(mappedBy = "house", fetch = FetchType.LAZY)
+    private List<FloorEntity> floors;
 
     public HouseEntity() {
     }
@@ -35,5 +39,13 @@ public class HouseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<FloorEntity> getFloors() {
+        return floors;
+    }
+
+    public void setFloors(List<FloorEntity> floors) {
+        this.floors = floors;
     }
 }

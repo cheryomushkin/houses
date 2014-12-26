@@ -24,7 +24,7 @@ define([
 
     module.controller('IndexController', ['$scope', '$rootScope', '$compile', 'HouseService',
         function ($scope, $rootScope, $compile, houseService) {
-            $scope.houses = houseService.get();
+            $scope.houses = houseService.getAll();
             $scope.addNew = function () {
                 var $dialogScope = $scope.$new();
                 Bootbox.dialog({

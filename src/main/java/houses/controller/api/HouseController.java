@@ -15,8 +15,13 @@ public class HouseController {
     private HouseService houseService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<House> get() {
+    public List<House> getAll() {
         return houseService.all();
+    }
+
+    @RequestMapping(value = "/{houseId}", method = RequestMethod.GET)
+    public House get(@PathVariable("houseId") final Long houseId) {
+        return houseService.get(houseId);
     }
 
     @RequestMapping(method = RequestMethod.POST)

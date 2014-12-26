@@ -20,9 +20,11 @@ define([
         });
     }]);
 
-    module.controller('IndexController', ['$scope', '$rootScope', '$compile', '$state', 'HouseService',
+    module.controller('HouseController', ['$scope', '$rootScope', '$compile', '$state', 'HouseService',
         function ($scope, $rootScope, $compile, $state, houseService) {
-
+            houseService.get({id: $state.params.houseId}, function(house) {
+                $scope.house = house
+            });
         }
     ]);
 });

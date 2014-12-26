@@ -8,9 +8,15 @@ define([
     module.factory('HouseService', ['$resource', function ($resource) {
         return $resource('api/house/:id', {id: '@id'},
             {
-                get: {
+                getAll: {
                     method: 'GET',
                     isArray: true
+                },
+                get: {
+                    method: 'GET',
+                    params: {
+                        id: '@id'
+                    }
                 },
                 add: {
                     method: 'POST'
@@ -18,7 +24,7 @@ define([
                 delete: {
                     method: 'DELETE',
                     params: {
-                        id: '@imId'
+                        id: '@id'
                     }
                 }
             }

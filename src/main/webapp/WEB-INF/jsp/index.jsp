@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="/webjars/bootstrap/3.3.1/css/bootstrap.css">
     <link rel="stylesheet" href="/webjars/font-awesome/4.2.0/css/font-awesome.css">
     <link rel="stylesheet" href="/resources/css/application.css">
-    <script data-main="/resources/js/core.js" src="webjars/requirejs/2.1.15/require.js"></script>
-    <base href="${request.contextPath}/"/>
+    <script data-main="/resources/js/core.js" src="/webjars/requirejs/2.1.15/require.js"></script>
+    <base href="/"/>
 </head>
 <body role="document" ng-controller="AppController">
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">

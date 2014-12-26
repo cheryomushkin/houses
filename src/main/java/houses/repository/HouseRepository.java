@@ -1,4 +1,4 @@
-package houses.dao;
+package houses.repository;
 
 import houses.persistence.HouseEntity;
 import org.springframework.data.repository.CrudRepository;
