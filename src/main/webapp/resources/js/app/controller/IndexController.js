@@ -28,7 +28,10 @@ define([
             $scope.addNew = function () {
                 var $dialogScope = $scope.$new();
                 Bootbox.dialog({
-                    message: $compile('<input type="text" class="form-control" ng-model="name"/>')($dialogScope),
+                    message: $compile('<form role="form">' +
+                        '<div class="form-group"><input type="text" placeholder="Name" class="form-control" ng-model="name"/></div>' +
+                        '<div class="form-group"><input type="text" placeholder="Address" class="form-control" ng-model="address"/></div>' +
+                        '</form>')($dialogScope),
                     title: 'Add new house',
                     buttons: {
                         cancel: {
@@ -37,7 +40,7 @@ define([
                         create: {
                             label: 'Create',
                             callback: function () {
-                                houseService.add({name: $dialogScope.name}, function (house) {
+                                houseService.add({name: $dialogScope.name, address: $dialogScope.address}, function (house) {
                                     $scope.houses.push(house)
                                 }, function (error) {
                                     alert('Error: ' + error.status)

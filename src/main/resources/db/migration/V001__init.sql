@@ -1,21 +1,22 @@
-create sequence house_seq start 1 increment by 1;
-create table if not exists house (
-  id bigint default nextval('house_seq') primary key,
-  name varchar(100) unique not null
+CREATE SEQUENCE house_seq START 1 INCREMENT BY 1;
+CREATE TABLE IF NOT EXISTS house (
+  id      BIGINT DEFAULT nextval('house_seq') PRIMARY KEY,
+  name    VARCHAR(100) UNIQUE       NOT NULL,
+  address VARCHAR(100) UNIQUE       NOT NULL
 );
-create index house_name_idx on house (name);
+CREATE INDEX house_name_idx ON house (name);
 
-create sequence floor_seq start 1 increment by 1;
-create table if not exists floor (
-  id bigint default nextval('floor_seq') primary key,
-  house_id bigint references house(id)
+CREATE SEQUENCE floor_seq START 1 INCREMENT BY 1;
+CREATE TABLE IF NOT EXISTS floor (
+  id       BIGINT DEFAULT nextval('floor_seq') PRIMARY KEY,
+  house_id BIGINT REFERENCES house (id)
 );
-create index floor_house_idx on floor (house_id);
+CREATE INDEX floor_house_idx ON floor (house_id);
 
-create sequence room_seq start 1 increment by 1;
-create table if not exists room (
-  id bigint default nextval('room_seq') primary key,
-  tenant varchar (64) null,
-  floor_id bigint references floor(id)
+CREATE SEQUENCE room_seq START 1 INCREMENT BY 1;
+CREATE TABLE IF NOT EXISTS room (
+  id       BIGINT DEFAULT nextval('room_seq') PRIMARY KEY,
+  tenant   VARCHAR(64) NULL,
+  floor_id BIGINT REFERENCES floor (id)
 );
-create index room_floor_idx on room (floor_id);
+CREATE INDEX room_floor_idx ON room (floor_id);

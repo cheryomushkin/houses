@@ -40,7 +40,7 @@ public class HouseService {
     }
 
     public House add(final House house) {
-        final HouseEntity newHouse = new HouseEntity(house.getName());
+        final HouseEntity newHouse = new HouseEntity(house.getName(), house.getAddress());
         final HouseEntity saved = houseRepository.save(newHouse);
         Optional.ofNullable(house.getFloors()).orElse(Arrays.asList(new Floor())).stream()
                 .forEach(floor -> addFloor(saved, floor));

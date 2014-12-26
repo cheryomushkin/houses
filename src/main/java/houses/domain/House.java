@@ -8,12 +8,13 @@ import java.util.stream.Collectors;
 public class House {
     private Long id;
     private String name;
+    private String address;
     private List<Floor> floors;
 
     public House() {
     }
 
-    public House(Long id, String name) {
+    public House(Long id, String name, String address) {
         this.id = id;
         this.name = name;
     }
@@ -43,11 +44,19 @@ public class House {
     }
 
     public static House fromEntity(final HouseEntity houseEntity) {
-        return new House(houseEntity.getId(), houseEntity.getName());
+        return new House(houseEntity.getId(), houseEntity.getName(), houseEntity.getAddress());
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public static House fromEntityDeep(final HouseEntity houseEntity) {
-        final House result = new House(houseEntity.getId(), houseEntity.getName());
+        final House result = new House(houseEntity.getId(), houseEntity.getName(), houseEntity.getAddress());
         result.setFloors(houseEntity.getFloors().stream()
                 .map(Floor::fromEntityDeep)
                 .collect(Collectors.toList()));
