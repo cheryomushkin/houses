@@ -12,10 +12,10 @@ create table if not exists floor (
 );
 create index floor_house_idx on floor (house_id);
 
-create sequence flat_seq start 1 increment by 1;
-create table if not exists flat (
-  id bigint default nextval('flat_seq') primary key,
-  number varchar (64) not null,
+create sequence room_seq start 1 increment by 1;
+create table if not exists room (
+  id bigint default nextval('room_seq') primary key,
+  tenant varchar (64) null,
   floor_id bigint references floor(id)
 );
-create index flat_floor_idx on flat (floor_id);
+create index room_floor_idx on room (floor_id);

@@ -18,7 +18,8 @@ define([
                 initialized: false
             };
             $rootScope._page = {
-                header: ''
+                header: '',
+                icon: ''
             };
             $rootScope._app.initialized = true;
             $('.main-container').show()
@@ -28,6 +29,7 @@ define([
     module.run(['$rootScope', function($rootScope) {
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             $rootScope._page.header = toState.header;
+            $rootScope._page.icon = toState.icon;
         });
     }]);
 

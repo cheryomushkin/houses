@@ -37,7 +37,7 @@
 <div class="container main-container" style="margin-top: 75px" hidden="hidden">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center">{{_page.header}}</h1>
+            <h1 class="text-center"><i ng-show="_page.icon" class="fa fa-{{_page.icon}}"></i> {{_page.header}}</h1>
         </div>
     </div>
     <div class="row" style="margin-top: 50px;">

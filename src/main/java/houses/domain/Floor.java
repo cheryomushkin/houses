@@ -9,7 +9,7 @@ public class Floor {
 
     private Long id;
 
-    private List<Flat> flats;
+    private List<Room> rooms;
 
     public Floor() {
     }
@@ -26,12 +26,12 @@ public class Floor {
         this.id = id;
     }
 
-    public List<Flat> getFlats() {
-        return flats;
+    public List<Room> getRooms() {
+        return rooms;
     }
 
-    public void setFlats(List<Flat> flats) {
-        this.flats = flats;
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 
     public static Floor fromEntity(final FloorEntity floorEntity) {
@@ -40,8 +40,8 @@ public class Floor {
 
     public static Floor fromEntityDeep(final FloorEntity floorEntity) {
         final Floor result = new Floor(floorEntity.getId());
-        result.setFlats(floorEntity.getFlats().stream()
-                .map(Flat::fromEntity)
+        result.setRooms(floorEntity.getRooms().stream()
+                .map(Room::fromEntity)
                 .collect(Collectors.toList()));
         return result;
     }

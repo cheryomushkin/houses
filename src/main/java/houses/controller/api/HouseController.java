@@ -29,6 +29,11 @@ public class HouseController {
         return houseService.add(house);
     }
 
+    @RequestMapping(method = RequestMethod.PUT)
+    public House update(@RequestBody final House house) {
+        return houseService.update(house);
+    }
+
     @RequestMapping(value = "/{houseId}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("houseId") final Long houseId) {
         houseService.delete(houseId);

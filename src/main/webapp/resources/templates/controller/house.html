@@ -9,4 +9,59 @@
         </div>
         <div class="col-md-4"></div>
     </div>
+    <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-2">
+            <a href="" class="btn btn-primary btn-lg" ng-click="addFloor()">
+                Add floor
+            </a>
+        </div>
+        <div class="col-md-10" style="margin-top: 10px">
+            Your house is <b>{{house.floors.length}}</b> floors high
+        </div>
+    </div>
+    <div class="row well" style="margin-top: 20px" ng-repeat="floor in house.floors">
+        <i ng-click="removeFloor(floor)"
+           class="fa fa-close pull-right"
+           style="padding-top: 5px; padding-right: 5px; cursor: pointer"></i>
+        <div class="col-md-12">
+            <div class="container-fluide">
+                <div class="row">
+                    <div class="col-md-2">
+                        Floor number <b>{{house.floors.length - $index}}</b>
+                    </div>
+                    <div class="col-md-1">
+                        Rooms:
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <a href="" ng-click="addRoom(floor)" class="btn btn-default">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-2" ng-repeat="room in floor.rooms" style="margin-bottom: 10px">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <i class="fa" ng-class="{'fa-coffee' : room.tenant, 'fa-circle-o': !room.tenant}"></i>
+                                            {{tenantString(room)}}&nbsp;
+                                            <span class="caret"></span>
+                                        </div>
+                                    </div>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="" ng-click="setTenant(room)">Set tenant</a></li>
+                                    <li><a href="" ng-click="removeTenant(room)">Expel tenant</a></li>
+                                    <li><a href="" ng-click="deleteRoom(floor, room)">Destroy room</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row well">
+        This is a basement. To add new floor you can press "Add floor" button. Build your house from here!
+    </div>
 </div>

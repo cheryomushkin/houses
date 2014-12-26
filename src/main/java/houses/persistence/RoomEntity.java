@@ -3,16 +3,16 @@ package houses.persistence;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "flat")
-public class FlatEntity {
+@Table(name = "room")
+public class RoomEntity {
 
     @Id
-    @GeneratedValue(generator = "flat_seq", strategy= GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "flat_seq", sequenceName = "flat_seq", allocationSize = 1)
+    @GeneratedValue(generator = "room_seq", strategy= GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "room_seq", sequenceName = "room_seq", allocationSize = 1)
     private Long id;
 
-    @Column(name = "number")
-    private String number;
+    @Column(name = "tenant", nullable = true)
+    private String tenant;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "floor_id")
@@ -26,12 +26,12 @@ public class FlatEntity {
         this.id = id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getTenant() {
+        return tenant;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setTenant(String tenant) {
+        this.tenant = tenant;
     }
 
     public FloorEntity getFloor() {
