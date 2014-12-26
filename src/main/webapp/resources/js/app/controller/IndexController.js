@@ -4,10 +4,12 @@ define([
     'Lodash',
     'AngularUiRouter',
     'Bootbox',
+    'app/controller/HouseController',
     'app/service/HouseService'
-], function ($, angular, _, angularUiRouter, Bootbox, houseService) {
+], function ($, angular, _, angularUiRouter, Bootbox) {
     var module = angular.module('houses.controller.index', [
         'ui.router',
+        'houses.controller.house',
         'houses.service.house'
     ]);
 
