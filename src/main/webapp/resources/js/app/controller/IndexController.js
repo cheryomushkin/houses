@@ -1,10 +1,11 @@
 define([
     'jQuery',
     'Angular',
+    'Lodash',
     'AngularUiRouter',
     'Bootbox',
     'app/service/HouseService'
-], function ($, angular, angularUiRouter, Bootbox, houseService) {
+], function ($, angular, _, angularUiRouter, Bootbox, houseService) {
     var module = angular.module('houses.controller.index', [
         'ui.router',
         'houses.service.house'
@@ -34,15 +35,27 @@ define([
                         create: {
                             label: 'Create',
                             callback: function () {
-                                houseService.add({name: $dialogScope.name}, function(house) {
+                                houseService.add({name: $dialogScope.name}, function (house) {
                                     $scope.houses.push(house)
-                                }, function(error) {
+                                }, function (error) {
                                     alert('Error: ' + error.status)
                                 })
                             }
                         }
                     }
                 });
+            };
+
+            $scope.remove = function (house) {
+                Bootbox.confirm('Are you sure?', function (result) {
+                    if (result) {
+                        houseService.delete({id: house.id}, function() {
+                            _.remove($scope.houses, function(it) {
+                                return it.id === house.id;
+                            });
+                        })
+                    }
+                })
             }
         }
     ]);

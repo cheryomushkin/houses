@@ -31,4 +31,8 @@ public class HouseService {
         house.setId(saved.getId());
         return house;
     }
+
+    public void delete(Long houseId) {
+        houseRepository.delete(houseId);
+    }
 }

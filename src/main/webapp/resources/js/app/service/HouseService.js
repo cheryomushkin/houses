@@ -6,7 +6,7 @@ define([
     var module = angular.module('houses.service.house', ['ngResource']);
 
     module.factory('HouseService', ['$resource', function ($resource) {
-        return $resource('api/house/', {},
+        return $resource('api/house/:id', {id: '@id'},
             {
                 get: {
                     method: 'GET',
@@ -14,6 +14,12 @@ define([
                 },
                 add: {
                     method: 'POST'
+                },
+                delete: {
+                    method: 'DELETE',
+                    params: {
+                        id: '@imId'
+                    }
                 }
             }
         )

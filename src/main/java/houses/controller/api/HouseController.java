@@ -3,12 +3,8 @@ package houses.controller.api;
 import houses.domain.House;
 import houses.service.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -26,5 +22,10 @@ public class HouseController {
     @RequestMapping(method = RequestMethod.POST)
     public House add(@RequestBody final House house) {
         return houseService.add(house);
+    }
+
+    @RequestMapping(value = "/{houseId}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("houseId") final Long houseId) {
+        houseService.delete(houseId);
     }
 }
