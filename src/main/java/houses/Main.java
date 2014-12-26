@@ -1,5 +1,6 @@
 package houses;
 
+import com.jolbox.bonecp.BoneCPDataSource;
 import org.postgresql.Driver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -56,11 +57,17 @@ public class Main extends SpringBootServletInitializer {
 
     @Bean
     public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(environment.getProperty("db.driver"));
-        dataSource.setUrl(environment.getProperty("db.url"));
+        final BoneCPDataSource dataSource = new BoneCPDataSource();
+        dataSource.setJdbcUrl(environment.getProperty("db.url"));
         dataSource.setUsername(environment.getProperty("db.username"));
         dataSource.setPassword(environment.getProperty("db.password"));
+        dataSource.setIdleConnectionTestPeriodInMinutes(60);
+        dataSource.setIdleMaxAgeInMinutes(240);
+        dataSource.setMaxConnectionsPerPartition(30);
+        dataSource.setMinConnectionsPerPartition(10);
+        dataSource.setPartitionCount(3);
+        dataSource.setAcquireIncrement(5);
+        dataSource.setStatementsCacheSize(100);
         return dataSource;
     }
 
