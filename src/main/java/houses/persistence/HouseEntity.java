@@ -14,6 +14,9 @@ public class HouseEntity {
     @Column(unique = true, nullable = false)
     private String name;
 
+    public HouseEntity() {
+    }
+
     public HouseEntity(String name) {
         this.name = name;
     }

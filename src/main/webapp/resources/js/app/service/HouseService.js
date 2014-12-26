@@ -11,6 +11,9 @@ define([
                 get: {
                     method: 'GET',
                     isArray: true
+                },
+                add: {
+                    method: 'POST'
                 }
             }
         )

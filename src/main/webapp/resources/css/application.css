@@ -1,0 +1,10 @@
+.fa.large {font-size: 700%; color: #e3e3e3;}
+.thumbnail.clickable {cursor: pointer; text-align: center; padding: 20px 0; }
+.thumbnail.clickable h3, .thumbnail.clickable p {margin: 0; cursor: pointer;}
+.thumbnail.clickable:hover *, .thumbnail.clickable.primary, .thumbnail.clickable.primary .fa.large {color: white;}
+.thumbnail.clickable:hover .badge {color: #00a0e1; background: white;}
+.thumbnail.clickable:hover, .thumbnail.clickable.primary, .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus, .btn-primary {
+    background: #00a0e1; border-color: #0093cf;
+}
+.thumbnail.clickable.primary:hover {background-color: white; border-color: #ddd;}
+.thumbnail.clickable.primary:hover .fa.large {color: #bbb;}

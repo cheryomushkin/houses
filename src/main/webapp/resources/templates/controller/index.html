@@ -2,8 +2,27 @@
     <div class="row">
         <div class="col-md-12">
             <div class="container-fluid">
-                <div class="row" ng-repeat="house in houses">
-                    {{house.name}}
+                <div class="row">
+                    <div class="col-sm-4" ng-repeat="house in houses">
+                        <div class="thumbnail clickable" ng-click="go('activity/index')">
+                            <i class="fa fa-home large"></i>
+                            <div class="caption">
+                                <h3>
+                                    {{house.name}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="thumbnail clickable" ng-click="addNew()">
+                            <i class="fa fa-plus large"></i>
+                            <div class="caption">
+                                <h3>
+                                    Add new house
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

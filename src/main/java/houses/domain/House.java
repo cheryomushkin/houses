@@ -4,6 +4,9 @@ public class House {
     private Long id;
     private String name;
 
+    public House() {
+    }
+
     public House(Long id, String name) {
         this.id = id;
         this.name = name;

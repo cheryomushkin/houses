@@ -21,9 +21,4 @@ public class IndexController {
     public String indexPage() {
         return "index";
     }
-
-    @RequestMapping(value = "/webjarsjs", produces = "application/javascript")
-    public String webjarjs() {
-        return RequireJS.getSetupJavaScript("/webjars/");
-    }
 }

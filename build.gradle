@@ -49,6 +49,8 @@ dependencies {
     compile 'org.webjars:requirejs:2.1.15'
     compile 'org.webjars:angular-ui-router:0.2.13'
     compile 'org.webjars:lodash:2.4.1-6'
+    compile 'org.webjars:font-awesome:4.2.0'
+    compile 'org.webjars:bootbox:4.3.0'
 
     compile 'org.slf4j:slf4j-api:1.7.9'
     compile 'ch.qos.logback:logback-classic:1.1.2'
