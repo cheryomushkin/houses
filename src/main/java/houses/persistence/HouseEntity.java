@@ -7,8 +7,11 @@ import javax.persistence.*;
 public class HouseEntity {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(generator = "house_seq", strategy= GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "house_seq", sequenceName = "house_seq", allocationSize = 1)
     private Long id;
+
+    @Column(unique = true, nullable = false)
     private String name;
 
     public HouseEntity(String name) {

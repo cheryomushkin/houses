@@ -1,8 +1,12 @@
 package houses;
 
+import com.googlecode.flyway.core.Flyway;
 import com.jolbox.bonecp.BoneCPDataSource;
 import org.postgresql.Driver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -11,6 +15,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -29,7 +34,9 @@ import java.util.Properties;
 @EnableAutoConfiguration
 @EnableTransactionManagement
 @ComponentScan({"houses"})
-public class Main extends SpringBootServletInitializer {
+public class Main extends SpringBootServletInitializer implements CommandLineRunner {
+
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     @Autowired
     private Environment environment;
@@ -56,6 +63,15 @@ public class Main extends SpringBootServletInitializer {
     }
 
     @Bean
+    @DependsOn("dataSource")
+    public Flyway flyway() {
+        Flyway flyway = new Flyway();
+        flyway.setDataSource(dataSource);
+        flyway.migrate();
+        return flyway;
+    }
+
+    @Bean
     public DataSource dataSource() {
         final BoneCPDataSource dataSource = new BoneCPDataSource();
         dataSource.setJdbcUrl(environment.getProperty("db.url"));
@@ -72,6 +88,7 @@ public class Main extends SpringBootServletInitializer {
     }
 
     @Bean
+    @DependsOn("flyway")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactory =
                 new LocalContainerEntityManagerFactoryBean();
@@ -95,5 +112,10 @@ public class Main extends SpringBootServletInitializer {
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
         return new PersistenceExceptionTranslationPostProcessor();
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        log.info("Start the application");
     }
 }
