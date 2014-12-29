@@ -2,11 +2,16 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4 text-center">
-            <input type="text"
-                   class="form-control"
-                   placeholder="House name"
-                   ng-model="house.name"/>
-        </div>
+			<div>
+			    Name:
+				<a href="#" editable-text="house.name" onbeforesave="checkName($data)" onaftersave="updateHouse(house)">{{ house.name || 'empty' }}</a>
+			</div>
+			<div>
+			    Address:
+                <a href="#" editable-text="house.address" onbeforesave="checkAddress($data)"  onaftersave="updateHouse(house)">{{ house.address || 'empty' }}</a>
+            </div>
+		</div>
+        
         <div class="col-md-4"></div>
     </div>
     <div class="row" style="margin-bottom: 20px">

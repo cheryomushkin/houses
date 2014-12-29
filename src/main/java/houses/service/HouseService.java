@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -78,7 +77,9 @@ public class HouseService {
     }
 
     public House update(final House house) {
-        //todo implement me
+    	HouseEntity houseEntity = houseRepository.findOne(house.getId());
+    	house.updateEntity(houseEntity);
+    	houseRepository.save(houseEntity);    	
         return house;
     }
 }

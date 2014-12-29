@@ -17,6 +17,7 @@ public class House {
     public House(Long id, String name, String address) {
         this.id = id;
         this.name = name;
+        this.address = address;
     }
 
     public Long getId() {
@@ -45,9 +46,10 @@ public class House {
 
     public static House fromEntity(final HouseEntity houseEntity) {
         return new House(houseEntity.getId(), houseEntity.getName(), houseEntity.getAddress());
-    }
+    }    
+    
 
-    public String getAddress() {
+	public String getAddress() {
         return address;
     }
 
@@ -62,4 +64,9 @@ public class House {
                 .collect(Collectors.toList()));
         return result;
     }
+
+	public void updateEntity(HouseEntity houseEntity) {		
+		houseEntity.setName(getName());	
+		houseEntity.setAddress(getAddress());		
+	}   
 }

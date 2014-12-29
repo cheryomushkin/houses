@@ -3,11 +3,13 @@ define([
     'Angular',
     'Lodash',
     'AngularUiRouter',
+    'AngularXEditable',
     'Bootbox',
     'app/service/HouseService'
-], function ($, angular, _, angularUiRouter, Bootbox, houseService) {
+], function ($, angular, _, angularUiRouter, angularXEditable, Bootbox, houseService) {
     var module = angular.module('houses.controller.house', [
         'ui.router',
+        'xeditable',
         'houses.service.house'
     ]);
 
@@ -20,13 +22,38 @@ define([
             icon: 'building'
         });
     }]);
+    
+    module.run(function(editableOptions) {
+    	  editableOptions.theme = 'bs3';
+	});
 
     module.controller('HouseController', ['$scope', '$rootScope', '$compile', '$state', 'HouseService',
         function ($scope, $rootScope, $compile, $state, houseService) {
-            houseService.get({id: $state.params.houseId}, function (house) {
+            
+    		houseService.get({id: $state.params.houseId}, function (house) {
                 $scope.house = house
             });
-
+    		
+    		$scope.checkName = function(name) {    			
+    			if (isEmpty(name)) {
+    				return "House name cannot be empty!";
+    			}          
+    		}
+    		
+    		$scope.checkAddress = function(address) {    			
+    			if (isEmpty(address)) {
+    				return "House address cannot be empty!";
+    			}          
+    		}
+    		
+    		$scope.updateHouse = function(house) {    			
+    			houseService.update(house, function (house) {
+    				//do nothing on successful update
+                }, function (error) {
+                    alert('Error: ' + error.status)
+                });            
+    		}
+                
             $scope.setTenant = function (room) {
                 var $dialogScope = $scope.$new();
                 Bootbox.dialog({
@@ -94,7 +121,11 @@ define([
                 if ($scope.house.floors.length === 0) {
                     doAddFloor()
                 }
-            }
+            }; 
+            
+            function isEmpty(str) {
+                return (!str || 0 === str.length);
+            };
         }
     ]);
 });

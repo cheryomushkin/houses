@@ -27,7 +27,7 @@ public class HouseEntity {
 
     public HouseEntity(String name, String address) {
         this.name = name;
-        this.address = address;
+        this.address = address == null ? "" : address;
     }
 
     public Long getId() {

@@ -8,6 +8,7 @@ require.config({
         Angular: '../js/libs/angular/angular',
         AngularUiRouter: '../js/libs/angular/angular-ui-router',
         AngularResource: '../js/libs/angular/angular-resource',
+        AngularXEditable: '../js/libs/angular/xeditable',
         Lodash: '../js/libs/lodash/lodash',
         App: '../js/app/module'
     },
@@ -16,6 +17,7 @@ require.config({
         'Angular',
         'AngularUiRouter',
         'AngularResource',
+        'AngularXEditable',
         'Lodash',
         'Bootstrap',
         'Bootbox',
@@ -26,7 +28,8 @@ require.config({
         Bootstrap: ['jQuery'],
         Bootbox: ['Bootstrap'],
         AngularUiRouter: ['Angular'],
-        AngularResource: ['Angular']
+        AngularResource: ['Angular'],
+        AngularXEditable: ['Angular']
     }
 });
 
@@ -37,6 +40,7 @@ require([
     'Angular',
     'AngularUiRouter',
     'AngularResource',
+    'AngularXEditable',
     'Lodash',
     'App'
 ], function () {

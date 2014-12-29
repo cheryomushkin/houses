@@ -21,6 +21,9 @@ define([
                 add: {
                     method: 'POST'
                 },
+                update: {
+                    method: 'PUT'
+                },
                 delete: {
                     method: 'DELETE',
                     params: {
