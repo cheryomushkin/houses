@@ -6,6 +6,7 @@ require.config({
         Bootstrap: '../js/libs/bootstrap/bootstrap',
         Bootbox: '../js/libs/bootstrap/bootbox',
         Angular: '../js/libs/angular/angular',
+        AngularCookies: '../js/libs/angular/angular-cookies',
         AngularUiRouter: '../js/libs/angular/angular-ui-router',
         AngularResource: '../js/libs/angular/angular-resource',
         AngularXEditable: '../js/libs/angular/xeditable',
@@ -15,6 +16,7 @@ require.config({
     priority: [
         'jQuery',
         'Angular',
+        'AngularCookies',
         'AngularUiRouter',
         'AngularResource',
         'AngularXEditable',
@@ -28,6 +30,7 @@ require.config({
         Bootstrap: ['jQuery'],
         Bootbox: ['Bootstrap'],
         AngularUiRouter: ['Angular'],
+        AngularCookies: ['Angular'],
         AngularResource: ['Angular'],
         AngularXEditable: ['Angular']
     }
@@ -38,6 +41,7 @@ require([
     'Bootstrap',
     'Bootbox',
     'Angular',
+    'AngularCookies',
     'AngularUiRouter',
     'AngularResource',
     'AngularXEditable',

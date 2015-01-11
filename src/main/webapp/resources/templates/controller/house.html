@@ -4,18 +4,20 @@
         <div class="col-md-4 text-center">
 			<div>
 			    Name:
-				<a href="#" editable-text="house.name" onbeforesave="checkName($data)" onaftersave="updateHouse(house)">{{ house.name || 'empty' }}</a>
+				<a ng-show="hasRole('ROLE_ADMIN')" href="#" editable-text="house.name" onbeforesave="checkName($data)" onaftersave="updateHouse(house)">{{ house.name || 'empty' }}</a>
+				<label ng-show="!hasRole('ROLE_ADMIN')">{{ house.name || 'empty' }}</label>
 			</div>
 			<div>
 			    Address:
-                <a href="#" editable-text="house.address" onbeforesave="checkAddress($data)"  onaftersave="updateHouse(house)">{{ house.address || 'empty' }}</a>
+                <a ng-show="hasRole('ROLE_ADMIN')" href="#" editable-text="house.address" onbeforesave="checkAddress($data)"  onaftersave="updateHouse(house)">{{ house.address || 'empty' }}</a>
+                <label ng-show="!hasRole('ROLE_ADMIN')">{{ house.address || 'empty' }}</label>
             </div>
 		</div>
-        
+
         <div class="col-md-4"></div>
     </div>
     <div class="row" style="margin-bottom: 20px">
-        <div class="col-md-2">
+        <div ng-show="hasRole('ROLE_ADMIN')" class="col-md-2">
             <a href="" class="btn btn-primary btn-lg" ng-click="addFloor()">
                 Add floor
             </a>
@@ -25,9 +27,11 @@
         </div>
     </div>
     <div class="row well" style="margin-top: 20px" ng-repeat="floor in house.floors">
-        <i ng-click="removeFloor(floor)"
-           class="fa fa-close pull-right"
-           style="padding-top: 5px; padding-right: 5px; cursor: pointer"></i>
+        <div ng-show="hasRole('ROLE_ADMIN')">
+            <i ng-click="removeFloor(floor)"
+               class="fa fa-close pull-right"
+               style="padding-top: 5px; padding-right: 5px; cursor: pointer"></i>
+        </div>
         <div class="col-md-12">
             <div class="container-fluide">
                 <div class="row">
@@ -40,12 +44,12 @@
                     <div class="col-md-9">
                         <div class="row">
                             <div class="col-md-1">
-                                <a href="" ng-click="addRoom(floor)" class="btn btn-default">
+                                <a href="" ng-show="hasRole('ROLE_ADMIN')" ng-click="addRoom(floor)" class="btn btn-default">
                                     <i class="fa fa-plus"></i>
                                 </a>
                             </div>
                             <div class="col-md-2" ng-repeat="room in floor.rooms" style="margin-bottom: 10px">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <button type="button" ng-disabled="!hasRole('ROLE_ADMIN')" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <i class="fa" ng-class="{'fa-coffee' : room.tenant, 'fa-circle-o': !room.tenant}"></i>

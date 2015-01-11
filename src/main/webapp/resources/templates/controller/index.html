@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-4" ng-repeat="house in houses">
-                        <i ng-click="remove(house)"
+                        <i ng-show="hasRole('ROLE_ADMIN')" ng-click="remove(house)"
                            class="fa fa-close pull-right"
                            style="padding-top: 5px; padding-right: 5px; cursor: pointer"></i>
 
@@ -18,7 +18,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div ng-show="hasRole('ROLE_ADMIN')" class="col-sm-4">
                         <div class="thumbnail clickable" ng-click="addNew()">
                             <i class="fa fa-plus large"></i>
 
