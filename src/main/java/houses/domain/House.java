@@ -67,6 +67,6 @@ public class House {
 
 	public void updateEntity(HouseEntity houseEntity) {		
 		houseEntity.setName(getName());	
-		houseEntity.setAddress(getAddress());		
-	}   
+		houseEntity.setAddress(getAddress());
+	}
 }

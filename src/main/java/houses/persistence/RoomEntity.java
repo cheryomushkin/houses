@@ -18,6 +18,10 @@ public class RoomEntity {
     @JoinColumn(name = "floor_id")
     private FloorEntity floor;
 
+    @Version
+    @Column
+    private Integer version;
+
     public Long getId() {
         return id;
     }
@@ -40,5 +44,13 @@ public class RoomEntity {
 
     public void setFloor(FloorEntity floor) {
         this.floor = floor;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

@@ -16,7 +16,11 @@ public class FloorEntity {
     @JoinColumn(name= "house_id")
     private HouseEntity house;
 
-    @OneToMany(mappedBy = "floor", fetch = FetchType.LAZY)
+    @Version
+    @Column
+    private Integer version;
+
+    @OneToMany(mappedBy = "floor", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<RoomEntity> rooms = new ArrayList<>();
 
     public Long getId() {
@@ -41,5 +45,13 @@ public class FloorEntity {
 
     public void setRooms(List<RoomEntity> rooms) {
         this.rooms = rooms;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

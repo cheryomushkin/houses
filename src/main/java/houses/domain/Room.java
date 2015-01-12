@@ -35,4 +35,8 @@ public class Room {
     public static Room fromEntity(final RoomEntity roomEntity) {
         return new Room(roomEntity.getId(), roomEntity.getTenant());
     }
+
+    public void updateEntity(RoomEntity roomEntity) {
+        roomEntity.setTenant(getTenant());
+    }
 }

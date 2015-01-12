@@ -38,21 +38,21 @@ define([
     			if (isEmpty(name)) {
     				return "House name cannot be empty!";
     			}          
-    		}
+    		};
     		
     		$scope.checkAddress = function(address) {    			
     			if (isEmpty(address)) {
     				return "House address cannot be empty!";
     			}          
-    		}
+    		};
     		
-    		$scope.updateHouse = function(house) {    			
-    			houseService.update(house, function (house) {
-    				//do nothing on successful update
+    		$scope.updateHouse = function() {
+    			houseService.update($scope.house, function (house) {
+                    $scope.house = house
                 }, function (error) {
                     alert('Error: ' + error.status)
                 });            
-    		}
+    		};
                 
             $scope.setTenant = function (room) {
                 var $dialogScope = $scope.$new();
@@ -67,7 +67,8 @@ define([
                             label: 'Set',
                             callback: function () {
                                 room.tenant = $dialogScope.tenant;
-                                $scope.$apply()
+                                $scope.$apply();
+                                $scope.updateHouse();
                             }
                         }
                     }
@@ -76,12 +77,15 @@ define([
 
             $scope.removeTenant = function (room) {
                 room.tenant = null;
+                $scope.updateHouse();
             };
 
             $scope.deleteRoom = function (floor, room) {
                 floor.rooms.splice(floor.rooms.indexOf(room), 1);
                 if (floor.rooms.length === 0) {
                     doAddRoom(floor)
+                } else {
+                    $scope.updateHouse()
                 }
             };
 
@@ -99,9 +103,8 @@ define([
                 if (!floor.rooms) {
                     floor.rooms = []
                 }
-                floor.rooms.push({
-                    name: '1'
-                })
+                floor.rooms.push({});
+                $scope.updateHouse()
             };
 
             $scope.addRoom = function (floor) {
@@ -120,12 +123,14 @@ define([
                 $scope.house.floors.splice($scope.house.floors.indexOf(floor), 1);
                 if ($scope.house.floors.length === 0) {
                     doAddFloor()
+                } else {
+                    $scope.updateHouse()
                 }
             }; 
             
             function isEmpty(str) {
                 return (!str || 0 === str.length);
-            };
+            }
         }
     ]);
 });

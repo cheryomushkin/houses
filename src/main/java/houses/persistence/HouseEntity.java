@@ -19,7 +19,11 @@ public class HouseEntity {
     @Column(unique = true, nullable = false)
     private String address;
 
-    @OneToMany(mappedBy = "house", fetch = FetchType.LAZY)
+    @Version
+    @Column
+    private Integer version;
+
+    @OneToMany(mappedBy = "house", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
     private List<FloorEntity> floors = new ArrayList<>();
 
     public HouseEntity() {
@@ -60,5 +64,13 @@ public class HouseEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }

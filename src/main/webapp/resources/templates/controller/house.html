@@ -4,12 +4,12 @@
         <div class="col-md-4 text-center">
 			<div>
 			    Name:
-				<a ng-show="hasRole('ROLE_ADMIN')" href="#" editable-text="house.name" onbeforesave="checkName($data)" onaftersave="updateHouse(house)">{{ house.name || 'empty' }}</a>
+				<a ng-show="hasRole('ROLE_ADMIN')" href="#" editable-text="house.name" onbeforesave="checkName($data)" onaftersave="updateHouse()">{{ house.name || 'empty' }}</a>
 				<label ng-show="!hasRole('ROLE_ADMIN')">{{ house.name || 'empty' }}</label>
 			</div>
 			<div>
 			    Address:
-                <a ng-show="hasRole('ROLE_ADMIN')" href="#" editable-text="house.address" onbeforesave="checkAddress($data)"  onaftersave="updateHouse(house)">{{ house.address || 'empty' }}</a>
+                <a ng-show="hasRole('ROLE_ADMIN')" href="#" editable-text="house.address" onbeforesave="checkAddress($data)"  onaftersave="updateHouse()">{{ house.address || 'empty' }}</a>
                 <label ng-show="!hasRole('ROLE_ADMIN')">{{ house.address || 'empty' }}</label>
             </div>
 		</div>
