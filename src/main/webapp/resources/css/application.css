@@ -8,3 +8,4 @@
 }
 .thumbnail.clickable.primary:hover {background-color: white; border-color: #ddd;}
 .thumbnail.clickable.primary:hover .fa.large {color: #bbb;}
+.modal-body {text-align: center;}

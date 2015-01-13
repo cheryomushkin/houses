@@ -10,20 +10,17 @@ import java.util.List;
 class CustomUserDetailsService implements UserDetailsService {
 
     public static final String ROLE_ADMIN = "ADMIN";
-    public static final String ROLE_USER = "USER";
+//    public static final String ROLE_USER = "USER";
 
     List<UserDetails> details = Arrays.<UserDetails>asList(
-            new SimpleUserDetails("goofy", "password", ROLE_USER),
-            new SimpleUserDetails("neo", "password", ROLE_USER, ROLE_ADMIN),
-            new SimpleUserDetails("admin", "password", ROLE_USER, ROLE_ADMIN),
-            new SimpleUserDetails("matrix", "password", ROLE_USER, ROLE_ADMIN));
+            new SimpleUserDetails("admin", "password", ROLE_ADMIN),
+            new SimpleUserDetails("neo", "password",  ROLE_ADMIN));
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         for (UserDetails details : this.details)
             if (details.getUsername().equalsIgnoreCase(username))
                 return details;
-
         return null;
     }
 }

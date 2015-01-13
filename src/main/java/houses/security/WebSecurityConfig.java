@@ -2,12 +2,11 @@ package houses.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.SecurityConfigurer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -16,21 +15,19 @@ import org.springframework.security.web.DefaultSecurityFilterChain;
 
 @Configuration
 @EnableWebMvcSecurity
-@EnableWebSecurity(debug = false)
-@Order
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.csrf().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        String[] restEndpointsToSecure = { "news"};
-        for (String endpoint : restEndpointsToSecure) {
-            http.authorizeRequests().antMatchers("/" + endpoint + "/**").hasRole(CustomUserDetailsService.ROLE_USER);
-        }
-
+        http
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .authorizeRequests()
+                    .antMatchers(HttpMethod.PUT, "/api/house/**").hasRole(CustomUserDetailsService.ROLE_ADMIN)
+                    .antMatchers(HttpMethod.POST, "/api/house/**").hasRole(CustomUserDetailsService.ROLE_ADMIN)
+                    .antMatchers(HttpMethod.DELETE, "/api/house/**").hasRole(CustomUserDetailsService.ROLE_ADMIN)
+        ;
         SecurityConfigurer<DefaultSecurityFilterChain, HttpSecurity> securityConfigurerAdapter = new XAuthTokenConfigurer(userDetailsServiceBean());
         http.apply(securityConfigurerAdapter);
     }
@@ -46,6 +43,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.userDetailsServiceBean();
     }
 
+    //todo can we autowared without this bean
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

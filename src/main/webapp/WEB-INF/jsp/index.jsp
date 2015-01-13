@@ -30,14 +30,14 @@
         <div class="container nav-container" hidden="hidden">
             <div ng-show="user === undefined">
                 <div id="navbar" ng-show="false" class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-right">
+                    <form name="loginForm" class="navbar-form navbar-right">
                         <div class="form-group">
-                            <input ng-model="username" type="text" placeholder="Email" class="form-control">
+                            <input ng-model="username" type="text" placeholder="Username" required class="form-control">
                         </div>
                         <div class="form-group">
-                            <input ng-model="password" type="password" placeholder="Password" class="form-control">
+                            <input ng-model="password" type="password" placeholder="Password" required class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-success" ng-click="login()">Sign in</button>
+                        <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-success" ng-click="login()">Sign in</button>
                     </form>
                 </div>
             </div>
