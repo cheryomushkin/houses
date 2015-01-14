@@ -40,28 +40,29 @@
                        style="padding-top: 5px; padding-right: 5px; cursor: pointer"></i>
                 </h3>
             </div>
-            <div class="panel panel-body">
+            <div class="panel panel-body btn-group">
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
-                        <div style="display: table-cell">
-                        <a href=""
+                        <div class="col-xs-1 col-md-1" style="margin-right: 25px">
+                        <button href=""
                                ng-show="hasRole('ROLE_ADMIN')"
                                ng-click="addRoom(floor)"
                                class="btn btn-room btn-success btn-lg"
                                role="button"
-                                style="margin-right: 4px">
+
+                                >
                                 <i class="fa fa-plus"></i><br>
                                 Add room
-                            </a>
+                            </button>
                         </div>
-                        <div style="display: table-cell" ng-repeat="room in floor.rooms">
+                        <div class="col-xs-1 col-md-1" style="margin-right: 25px" ng-repeat="room in floor.rooms">
                             <button type="button"
                                     class="btn btn-room btn-info btn-lg dropdown-toggle"
                                     data-toggle="dropdown"
                                     aria-expanded="false"
-                                    style="margin-right: 4px;"
+
                                     ng-disabled="!hasRole('ROLE_ADMIN')">
-                                <i class="fa" ng-class="{'fa-coffee' : room.tenant, 'fa-circle-o': !room.tenant}"></i>
+                                <i class="fa" ng-class="{'fa-user' : room.tenant, 'fa-circle-o': !room.tenant}"></i>
                                 &nbsp;<span class="caret"></span><br>
                                 {{tenantString(room)}}
                             </button>
