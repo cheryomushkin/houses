@@ -1,3 +1,4 @@
 # Created by .gitignore support plugin (hsz.mobi)
 src/main/resources/application-dev.properties
 /bin/
+/build/
