@@ -21,6 +21,7 @@ public class FloorEntity {
     private Integer version;
 
     @OneToMany(mappedBy = "floor", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
+    @OrderBy("id asc")
     private List<RoomEntity> rooms = new ArrayList<>();
 
     public Long getId() {
